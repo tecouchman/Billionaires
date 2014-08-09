@@ -48,19 +48,27 @@ public class BillionaireComparison extends Activity {
     private void showRandomBillionaire() {
 
 
-        ArrayList<Billionaire> items = new ArrayList<Billionaire>();
+
+
+        //ArrayList<Billionaire> items = new ArrayList<Billionaire>();
+
+
         try {
 
             XmlPullParser xpp=getResources().getXml(R.xml.billionairesinfo);
 
+            Random rand = new Random();
+            int randomNum = rand.nextInt(xpp.getName(1));
+            int currentIndex = 0;
+
             while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
-                if (xpp.getEventType()==XmlPullParser.START_TAG) {
+                if (xpp.getEventType()==XmlPullParser.START_TAG && currentIndex++ = randomNum) {
 
                     Billionaire billionaire = new Billionaire();
 
                     while (xpp.next() != XmlPullParser.END_TAG) {
                         if (xpp.getEventType() != XmlPullParser.START_TAG) {
-                            xpp.getAttributeValue(null, "id");
+                            billionaire.ID = xpp.getAttributeValue(null, "id");
                             continue;
                         }
                         String name = xpp.getName();
@@ -93,11 +101,6 @@ public class BillionaireComparison extends Activity {
         catch (Exception e) {
         }
 
-
-
-
-        Random rand = new Random();
-        int randomNum = rand.nextInt(items.size());
 
         Billionaire randomBillionaire = items.get(randomNum);
 
