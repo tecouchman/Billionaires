@@ -60,6 +60,7 @@ public class BillionaireComparison extends Activity {
 
                     while (xpp.next() != XmlPullParser.END_TAG) {
                         if (xpp.getEventType() != XmlPullParser.START_TAG) {
+                            xpp.getAttributeValue(null, "id");
                             continue;
                         }
                         String name = xpp.getName();

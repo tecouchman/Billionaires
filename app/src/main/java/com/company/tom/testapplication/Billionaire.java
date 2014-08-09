@@ -11,5 +11,4 @@ public class Billionaire {
     public String source;
     public String country;
     public String change;
-
 }
