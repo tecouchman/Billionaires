@@ -2,9 +2,16 @@ package com.company.tom.testapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.company.tom.testapplication.R;
@@ -12,9 +19,12 @@ import com.company.tom.testapplication.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.Console;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 public class BillionaireComparison extends Activity {
 
@@ -22,7 +32,8 @@ public class BillionaireComparison extends Activity {
     TextView billionaireNameTextView;
     TextView billionaireWorthTextView;
     TextView billionaireAgeTextView;
-
+    TextView userSalaryTextView;
+    ImageView billionaireImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +43,8 @@ public class BillionaireComparison extends Activity {
         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
         billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
         billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
-
+        billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
+        userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         showRandomBillionaire();
     }
 
@@ -48,30 +60,35 @@ public class BillionaireComparison extends Activity {
     private void showRandomBillionaire() {
 
 
-
-
-        //ArrayList<Billionaire> items = new ArrayList<Billionaire>();
-
+        ArrayList<Billionaire> items = new ArrayList<Billionaire>();
 
         try {
 
             XmlPullParser xpp=getResources().getXml(R.xml.billionairesinfo);
 
-            Random rand = new Random();
-            int randomNum = rand.nextInt(xpp.getName(1));
-            int currentIndex = 0;
+
 
             while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
-                if (xpp.getEventType()==XmlPullParser.START_TAG && currentIndex++ = randomNum) {
+                if (xpp.getEventType()==XmlPullParser.START_TAG) {
 
                     Billionaire billionaire = new Billionaire();
 
+
+                    String name = xpp.getName();
+
+                       String personID = "";
+                    if (name.equals("person")) {
+                        personID = xpp.getAttributeValue(0);
+                    }
+
                     while (xpp.next() != XmlPullParser.END_TAG) {
                         if (xpp.getEventType() != XmlPullParser.START_TAG) {
-                            billionaire.ID = xpp.getAttributeValue(null, "id");
+
                             continue;
                         }
-                        String name = xpp.getName();
+                        billionaire.ID = personID;
+
+                        name = xpp.getName();
 
                         if (name.equals("b_name")) {
                             billionaire.name = readText(xpp);
@@ -95,24 +112,55 @@ public class BillionaireComparison extends Activity {
                 }
 
                 xpp.next();
+
             }
 
         }
         catch (Exception e) {
+            // If an exception is thrown while the xml is being parsed then the billionaire data
+            // can't be displayed so display an error message and return to previous screen.
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please try again.")
+                    .setTitle("Something went wrong")
+                    .setPositiveButton("OK", null)
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
 
 
+        Random rand = new Random();
+        int randomNum = rand.nextInt(items.size());
         Billionaire randomBillionaire = items.get(randomNum);
 
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(items.get(randomNum).name)
-                .setTitle("Billionaire");
-        AlertDialog dialog = builder.create();
-        dialog.show();*/
-
-        billionaireNameTextView.setText(randomBillionaire.name);
+        billionaireAgeTextView.setText(randomBillionaire.ID);
         billionaireWorthTextView.setText(randomBillionaire.worth);
-        billionaireAgeTextView.setText(randomBillionaire.age);
+        billionaireNameTextView.setText(randomBillionaire.name);
+
+        Context context = billionaireImageView.getContext();
+        int id = context.getResources().getIdentifier("img" + randomBillionaire.ID, "drawable", context.getPackageName());
+        billionaireImageView.setImageResource(id);
+
+        double userSalary = Double.parseDouble(getIntent().getExtras().getString("salary"));
+        double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
+        userSalaryTextView.setText("With your current salary it would take you " + ((networth / userSalary)) + " years to earn this much.");
+
+    }
+
+    public static int getResId(String variableName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(variableName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 
