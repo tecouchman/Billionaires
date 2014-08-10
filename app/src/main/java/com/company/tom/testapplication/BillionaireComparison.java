@@ -151,8 +151,17 @@ public class BillionaireComparison extends Activity  {
         double userSalary = getIntent().getExtras().getDouble("salary");
         // Calculate the billionaire's worth as an actual number, not just number of billions.
         double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
-        // Divide the billionaires worth by the salary to see how many years it would take to earn it.
-        userSalaryTextView.setText("With your current salary it would take you " + ((networth / userSalary)) + " years to earn this much.");
+
+        // calculate how many years based, includes compound interest
+        int year = 1;
+        double currentWorth = userSalary;
+        while (networth > currentWorth) {
+             year++;
+             double interest = currentWorth*.1;
+             currentWorth = userSalary + currentWorth + interest;
+        }
+        // Return years
+        userSalaryTextView.setText("With your current salary, with 100% savings and 10% interest it would take you " + year + " years to earn this much.");
 
     }
 
