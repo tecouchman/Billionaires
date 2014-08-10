@@ -66,7 +66,7 @@ public class MyActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         Intent billionaireComparison = new Intent(this, BillionaireComparison.class);
-        String salary = salaryEditText.getText().toString();
+        Double salary = Double.parseDouble(salaryEditText.getText().toString());
         billionaireComparison.putExtra("salary",salary);
         startActivity(billionaireComparison);
         return;

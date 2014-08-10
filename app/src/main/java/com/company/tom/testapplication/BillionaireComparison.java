@@ -59,7 +59,6 @@ public class BillionaireComparison extends Activity {
 
     private void showRandomBillionaire() {
 
-
         ArrayList<Billionaire> items = new ArrayList<Billionaire>();
 
         try {
@@ -142,12 +141,17 @@ public class BillionaireComparison extends Activity {
         billionaireWorthTextView.setText(randomBillionaire.worth);
         billionaireNameTextView.setText(randomBillionaire.name);
 
+        // Determine the resource name of the relevant image and get the resource ID, then set the
+        // the image to the image view using the resource ID.
         Context context = billionaireImageView.getContext();
         int id = context.getResources().getIdentifier("img" + randomBillionaire.ID, "drawable", context.getPackageName());
         billionaireImageView.setImageResource(id);
 
-        double userSalary = Double.parseDouble(getIntent().getExtras().getString("salary"));
+        // Retrieve the salary from th previous activity
+        double userSalary = getIntent().getExtras().getDouble("salary");
+        // Calculate the billionaire's worth as an actual number, not just number of billions.
         double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
+        // Divide the billionaires worth by the salary to see how many years it would take to earn it.
         userSalaryTextView.setText("With your current salary it would take you " + ((networth / userSalary)) + " years to earn this much.");
 
     }
