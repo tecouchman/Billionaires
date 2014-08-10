@@ -2,6 +2,7 @@ package com.company.tom.testapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Xml;
@@ -65,11 +66,22 @@ public class MyActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-        Intent billionaireComparison = new Intent(this, BillionaireComparison.class);
-        Double salary = Double.parseDouble(salaryEditText.getText().toString());
-        billionaireComparison.putExtra("salary",salary);
-        startActivity(billionaireComparison);
-        return;
+        // if no salary entered, display an alert dialog
+        if (salaryEditText.getText().toString().equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("")
+                    .setTitle("Please enter a salary")
+                    .setPositiveButton("OK", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
+        else {
+            Intent billionaireComparison = new Intent(this, BillionaireComparison.class);
+            Double salary = Double.parseDouble(salaryEditText.getText().toString());
+            billionaireComparison.putExtra("salary", salary);
+            startActivity(billionaireComparison);
+        }
     }
 
 
