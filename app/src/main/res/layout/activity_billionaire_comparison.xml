@@ -10,13 +10,8 @@
 
     tools:context="com.company.tom.testapplication.BillionaireComparison">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="250dp"
 
-        >
-
-        <ImageView
+     <ImageView
             android:id="@+id/billionaire_imageview"
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -28,15 +23,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:width="200dp"
-        android:height="60dp"
+        android:width="220dp"
+        android:height="80dp"
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         />
 
-    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/billionaire_worth_textview"

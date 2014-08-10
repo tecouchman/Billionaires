@@ -26,7 +26,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class BillionaireComparison extends Activity {
+public class BillionaireComparison extends Activity  {
+
+
 
 
     TextView billionaireNameTextView;
@@ -63,7 +65,7 @@ public class BillionaireComparison extends Activity {
 
         try {
 
-            XmlPullParser xpp=getResources().getXml(R.xml.billionairesinfo);
+            XmlPullParser xpp=getResources().getXml(R.xml.billionairesfix);
 
 
 
@@ -91,7 +93,7 @@ public class BillionaireComparison extends Activity {
 
                         if (name.equals("b_name")) {
                             billionaire.name = readText(xpp);
-                        } else if (name.equals("b_worth")) {
+                        } else if (name.equals("b_wealth")) {
                             billionaire.worth = readText(xpp);
                         } else if (name.equals("b_age")) {
                             billionaire.age = readText(xpp);
@@ -101,8 +103,6 @@ public class BillionaireComparison extends Activity {
                             billionaire.source = readText(xpp);
                         } else if (name.equals("b_country")) {
                             billionaire.country = readText(xpp);
-                        } else if (name.equals("b_change")) {
-                            billionaire.change = readText(xpp);
                         }
                     }
 
@@ -144,7 +144,7 @@ public class BillionaireComparison extends Activity {
         // Determine the resource name of the relevant image and get the resource ID, then set the
         // the image to the image view using the resource ID.
         Context context = billionaireImageView.getContext();
-        int id = context.getResources().getIdentifier("img" + randomBillionaire.ID, "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier("pic" + randomBillionaire.ID, "drawable", context.getPackageName());
         billionaireImageView.setImageResource(id);
 
         // Retrieve the salary from th previous activity
