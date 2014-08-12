@@ -137,8 +137,8 @@ public class BillionaireComparison extends Activity  {
         int randomNum = rand.nextInt(items.size());
         Billionaire randomBillionaire = items.get(randomNum);
 
-        billionaireAgeTextView.setText(randomBillionaire.ID);
-        billionaireWorthTextView.setText(randomBillionaire.worth);
+        billionaireAgeTextView.setText(randomBillionaire.ID + "Years Old");
+        billionaireWorthTextView.setText("$" + randomBillionaire.worth + " Billion");
         billionaireNameTextView.setText(randomBillionaire.name);
 
         // Determine the resource name of the relevant image and get the resource ID, then set the
