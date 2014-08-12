@@ -144,7 +144,7 @@ public class BillionaireComparison extends Activity  {
         // Determine the resource name of the relevant image and get the resource ID, then set the
         // the image to the image view using the resource ID.
         Context context = billionaireImageView.getContext();
-        int id = context.getResources().getIdentifier("pic" + randomBillionaire.ID, "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier("big" + randomBillionaire.ID, "drawable", context.getPackageName());
         billionaireImageView.setImageResource(id);
 
         // Retrieve the salary from th previous activity
