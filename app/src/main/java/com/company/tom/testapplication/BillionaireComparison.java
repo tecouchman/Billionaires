@@ -19,12 +19,18 @@ import com.company.tom.testapplication.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.company.tom.model.CardModel;
+import com.andtinder.view.CardContainer;
+import com.andtinder.view.SimpleCardStackAdapter;
+
 import java.io.Console;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
+
+
 
 public class BillionaireComparison extends Activity  {
 
@@ -37,17 +43,54 @@ public class BillionaireComparison extends Activity  {
     TextView userSalaryTextView;
     ImageView billionaireImageView;
 
+    //variable hosting cards
+    private CardContainer mCardContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billionaire_comparison);
 
-        billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
-        billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
-        billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
-        billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
+        //nflate into a CardContainer the container you declared in your XML
+        mCardContainer = (CardContainer) findViewById(R.id.layoutview);
+
+       // set sort cards disordered
+        mCardContainer.setOrientation(Orientation.Disordered);
+
+        //create card
+        card = new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.pic1));
+
+
+        //Set Delegat for Like or Dislike
+        card.setOnCardDimissedDelegate(new CardView.OnCardDimissedDelegate() {
+            @Override
+            public void onLike(CardView cardView) {
+                Log.d("Swipeable Card", "I liked it");
+            }
+
+            @Override
+            public void onDislike(CardView cardView) {
+                Log.d("Swipeable Card", "I did not liked it");
+            }
+        });
+
+        // An adapter which links the cards and the Container
+        SimpleCardStackAdapter adapter = new SimpleCardStackAdapter(this);
+        adapter.add(new CardModel("Title1", "Description goes here", r.getDrawable(R.drawable.picture1)));
+        mCardContainer.setAdapter(adapter);
+
+
+
+         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
+         billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
+         billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
+         billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         showRandomBillionaire();
+
+
+
+
     }
 
     private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
