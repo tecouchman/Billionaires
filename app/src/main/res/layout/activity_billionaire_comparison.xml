@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#C50027"
+    android:background="#ffffd000"
 
     tools:context="com.company.tom.testapplication.BillionaireComparison">
 
@@ -14,25 +14,43 @@
      <ImageView
         android:id="@+id/billionaire_imageview"
 
-        android:layout_width="200dp"
-         android:layout_height="304dp"
-         android:paddingRight="2dp"
-         android:paddingBottom="2dp"
-         android:background="#C50027"
+        android:layout_width="198dp"
+         android:layout_height="300dp"
+android:layout_marginRight="4dp"
+         android:layout_marginBottom="4dp"
+         android:background="#ffffd000"
          android:layout_alignParentTop="true"
          android:layout_alignParentLeft="true"
          android:layout_alignParentStart="true" />
 
+    <ImageView
+
+        android:id="@+id/bigmac_imageview"
+        android:layout_width="200dp"
+        android:layout_height="304dp"
+    android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+
+        android:background="#ff6400ff"
+        android:layout_below="@+id/billionaire_age_textview"
+
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/b_desc"
+        android:layout_toRightOf="@+id/billionaire_imageview"
+        android:layout_toEndOf="@+id/billionaire_imageview" />
+
+
     <TextView
         android:id="@+id/billionaire_name_textview"
-        android:text="James O'Claire and Tom Couchman"
+        android:text="James O'Claire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:padding="10dp"
         android:textSize="30sp"
         android:textColor="#ffffff"
 
-        android:background="#41008f"
+        android:background="#ff6400ff"
         android:gravity="center"
         android:layout_toEndOf="@+id/billionaire_imageview"
         android:layout_alignParentTop="true"
@@ -46,11 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+        android:gravity="center"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:textSize="30sp"
-        android:background="#41008f"
+        android:background="#ff6400ff"
         android:text="$65 Billion"
         android:width="200dp"
         android:height="50dp"
@@ -64,13 +82,14 @@
 
     <TextView
     android:id="@+id/billionaire_age_textview"
-        android:text="Age: 27"
-        android:background="#41008f"
+        android:text="Age 27"
+        android:background="#ff6400ff"
         android:textSize="30sp"
+        android:gravity="center"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
 android:paddingTop="10dp"
-        android:paddingLeft="10dp"
+        android:padding="5dp"
         android:textColor="#ffffff"
         android:layout_below="@+id/billionaire_worth_textview"
         android:layout_alignRight="@+id/billionaire_worth_textview"
@@ -84,16 +103,36 @@ android:paddingTop="10dp"
         android:text="It would take you 1000 years to be as cool as we are."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:background="#41008f"
-        android:width="200dp"
+        android:textSize="24sp"
+        android:padding="5dp"
+        android:background="#ff6400ff"
+        android:width="150dp"
         android:height="200dp"
         android:textColor="#ffffff"
-        android:layout_below="@+id/billionaire_imageview"
+        android:layout_toEndOf="@+id/billionaire_imageview"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/b_desc"
+        android:layout_below="@+id/billionaire_imageview" />
+    />
+    <TextView
+    android:id="@+id/b_desc"
+        android:text="It would take you 1000 years to be as cool as we are. lsdkajfsd lksdjfa;lsdjfasdlkfsdl kjd;fajsd ;lkdsjfalsdkdlddf alkdslkjfd lkj djkld fdk ljd klj dlk dlkd lk dlk ljk lkjdlk flk flk l kj lk lkj lk jlk lkj lk "
+        android:padding="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="16sp"
+    android:background="#ff6400ff"
+android:layout_marginRight="4dp"
+    android:textColor="#ffffff"
+        android:layout_toEndOf="@+id/user_salary_textview"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
-        />
+        android:layout_toLeftOf="@+id/user_salary_textview"
+        android:layout_toStartOf="@+id/user_salary_textview"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/billionaire_imageview" />
+    />
 
 
 

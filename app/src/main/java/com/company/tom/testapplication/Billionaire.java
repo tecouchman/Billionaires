@@ -11,4 +11,5 @@ public class Billionaire {
     public String rank;
     public String source;
     public String country;
+    public String desc;
 }

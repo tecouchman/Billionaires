@@ -39,7 +39,9 @@ public class BillionaireComparison extends Activity  {
     TextView billionaireWorthTextView;
     TextView billionaireAgeTextView;
     TextView userSalaryTextView;
+    TextView billionaireDescTextView;
     ImageView billionaireImageView;
+    ImageView bigmacImageView;
 
 
 
@@ -54,7 +56,9 @@ public class BillionaireComparison extends Activity  {
          billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
          billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
          billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
+        bigmacImageView = (ImageView) findViewById(R.id.bigmac_imageview);
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
+        billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
 
 
@@ -94,6 +98,12 @@ public class BillionaireComparison extends Activity  {
                         personID = xpp.getAttributeValue(0);
                     }
 
+
+
+
+
+
+
                     while (xpp.next() != XmlPullParser.END_TAG) {
                         if (xpp.getEventType() != XmlPullParser.START_TAG) {
 
@@ -115,6 +125,8 @@ public class BillionaireComparison extends Activity  {
                             billionaire.source = readText(xpp);
                         } else if (name.equals("b_country")) {
                             billionaire.country = readText(xpp);
+                        }else if (name.equals("desc")) {
+                            billionaire.desc = readText(xpp);
                         }
                     }
 
@@ -149,15 +161,19 @@ public class BillionaireComparison extends Activity  {
         int randomNum = rand.nextInt(items.size());
         Billionaire randomBillionaire = items.get(randomNum);
 
-        billionaireAgeTextView.setText(randomBillionaire.ID + "Years Old");
+        billionaireAgeTextView.setText("Age " + randomBillionaire.age);
         billionaireWorthTextView.setText("$" + randomBillionaire.worth + " Billion");
         billionaireNameTextView.setText(randomBillionaire.name);
+        billionaireDescTextView.setText(randomBillionaire.desc);
 
         // Determine the resource name of the relevant image and get the resource ID, then set the
         // the image to the image view using the resource ID.
         Context context = billionaireImageView.getContext();
-        int id = context.getResources().getIdentifier("big" + randomBillionaire.ID, "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier("pic" + randomBillionaire.ID, "drawable", context.getPackageName());
         billionaireImageView.setImageResource(id);
+
+        //bigmacs
+        bigmacImageView.setImageResource(R.drawable.bigmac);
 
         // Retrieve the salary from th previous activity
         double userSalary = getIntent().getExtras().getDouble("salary");
@@ -173,7 +189,7 @@ public class BillionaireComparison extends Activity  {
              currentWorth = userSalary + currentWorth + interest;
         }
         // Return years
-        userSalaryTextView.setText("With your current salary, with 100% savings and 10% interest it would take you " + year + " years to earn this much.");
+        userSalaryTextView.setText("With your current salary, with 100% savings and 10% interest it would take you " + year + " years to eat this many Big Macs.");
 
     }
 
