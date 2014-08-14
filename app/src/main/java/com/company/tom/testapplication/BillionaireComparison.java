@@ -32,9 +32,6 @@ import java.util.ResourceBundle;
 
 public class BillionaireComparison extends Activity  {
 
-
-
-
     TextView billionaireNameTextView;
     TextView billionaireWorthTextView;
     TextView billionaireAgeTextView;
@@ -42,8 +39,6 @@ public class BillionaireComparison extends Activity  {
     TextView billionaireDescTextView;
     ImageView billionaireImageView;
     ImageView bigmacImageView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
