@@ -32,13 +32,18 @@ import java.util.ResourceBundle;
 
 public class BillionaireComparison extends Activity  {
 
+
     TextView billionaireNameTextView;
     TextView billionaireWorthTextView;
     TextView billionaireAgeTextView;
     TextView userSalaryTextView;
     TextView billionaireDescTextView;
     ImageView billionaireImageView;
-    ImageView bigmacImageView;
+    ImageView foodImageView;
+
+    TextView foodNameTextView;
+    TextView foodSourceTextView;
+    TextView foodCostTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +61,10 @@ public class BillionaireComparison extends Activity  {
         billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
 
-
-
+        foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
+        foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
+        foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
+        showRandomFood();
 
     }
 
@@ -175,6 +182,9 @@ public class BillionaireComparison extends Activity  {
         // Calculate the billionaire's worth as an actual number, not just number of billions.
         double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
 
+        randomBillionaire.currentbworth = networth;
+
+
         // calculate how many years based, includes compound interest
         int year = 1;
         double currentWorth = userSalary;
@@ -198,6 +208,119 @@ public class BillionaireComparison extends Activity  {
             return -1;
         }
     }
+
+
+    private void showRandomFood() {
+
+        ArrayList<Billionaire> fooditems = new ArrayList<Billionaire>();
+
+        try {
+
+            XmlPullParser xpp=getResources().getXml(R.xml.food);
+
+            while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
+                if (xpp.getEventType()==XmlPullParser.START_TAG) {
+
+                    Billionaire food = new Billionaire();
+
+
+                    String fname = xpp.getName();
+
+                    String foodID = "";
+                    if (fname.equals("person")) {
+                        foodID = xpp.getAttributeValue(0);
+                    }
+
+
+
+                    while (xpp.next() != XmlPullParser.END_TAG) {
+                        if (xpp.getEventType() != XmlPullParser.START_TAG) {
+
+                            continue;
+                        }
+                        food.ID = foodID;
+
+                        fname = xpp.getName();
+
+                        if (fname.equals("f_name")) {
+                            food.fname = readText(xpp);
+                        } else if (fname.equals("f_cost")) {
+                            food.fcost = readText(xpp);
+                        } else if (fname.equals("f_from")) {
+                            food.fsour = readText(xpp);
+                        }
+                    }
+
+                    fooditems.add(food);
+
+                }
+
+                xpp.next();
+
+            }
+
+        }
+        catch (Exception e) {
+            // If an exception is thrown while the xml is being parsed then the billionaire data
+            // can't be displayed so display an error message and return to previous screen.
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please try again.")
+                    .setTitle("Something went wrong")
+                    .setPositiveButton("OK", null)
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+
+        Random rand = new Random();
+        int randomNum = rand.nextInt(fooditems.size());
+        Billionaire randomFood = fooditems.get(randomNum);
+
+
+        double howmany = double.parseDouble(randomFood.fcost);
+
+
+        foodCostTextView.setText((randomFood.currentbworth / howmany) + randomFood.fname) ;
+
+
+        // Determine the resource name of the relevant image and get the resource ID, then set the
+        // the image to the image view using the resource ID.
+        Context context = foodImageView.getContext();
+        int id = context.getResources().getIdentifier("stf" + randomFood.ID, "drawable", context.getPackageName());
+        foodImageView.setImageResource(id);
+
+
+
+        }
+
+    }
+
+    public static int getResId(String variableName, Class<?> c) {
+
+        try {
+            Field idField = c.getDeclaredField(variableName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     @Override

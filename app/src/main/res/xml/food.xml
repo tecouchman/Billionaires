@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+   <food id="1">
+      <f_name>Big Macs</f_name>
+      <f_cost>5</f_cost>
+      <f_from>McDonalds</f_from>
+   </food>
+   <food id="2">
+      <f_name>Glazed Donut Sandwhiches</f_name>
+      <f_cost>3</f_cost>
+      <f_from>Dunkin Donuts</f_from>
+   </food>
+   <food id="3">
+      <f_name>Cheeseburger Stuffed Crust Pizzas</f_name>
+      <f_cost>18</f_cost>
+      <f_from>Pizza Hut</f_from>
+   </food>
+   <food id="4">
+      <f_name>Waffle Tacos</f_name>
+      <f_cost>2</f_cost>
+      <f_from>Taco Bell</f_from>
+   </food>
+   <food id="5">
+      <f_name>Bacon Sundays</f_name>
+      <f_cost>5</f_cost>
+      <f_from>Burger King</f_from>
+   </food>
+   <food id="6">
+      <f_name>Pizza Burgers</f_name>
+      <f_cost>6</f_cost>
+      <f_from>Burger King</f_from>
+   </food>
+   <food id="7">
+      <f_name>Double Downs</f_name>
+      <f_cost>6</f_cost>
+      <f_from>KFC</f_from>
+   </food>
+   <food id="8">
+      <f_name>Hot Dog Stuff Crust Pizzas</f_name>
+      <f_cost>18</f_cost>
+      <f_from>Pizza Hut</f_from>
+   </food>
+   <food id="9">
+      <f_name>Pop Tart Ice Cream Sandwhiches</f_name>
+      <f_cost>3</f_cost>
+      <f_from>Carl's Junior</f_from>
+   </food>
+   <food id="10">
+      <f_name>Slam Burgers</f_name>
+      <f_cost>10</f_cost>
+      <f_from>Dennys</f_from>
+   </food>
+   <food id="11">
+      <f_name>Pecan Buns</f_name>
+      <f_cost>4</f_cost>
+      <f_from>Cinnabon</f_from>
+   </food>
+   <food id="12">
+      <f_name>Candy Corn Oreos</f_name>
+      <f_cost>3</f_cost>
+      <f_from>Nabisco</f_from>
+   </food>
+   <food id="13">
+      <f_name>Bags of Ketchup Chips</f_name>
+      <f_cost>2</f_cost>
+      <f_from>Heinz</f_from>
+   </food>
+   <food id="14">
+      <f_name>Containers of Baconnaise</f_name>
+      <f_cost>5</f_cost>
+      <f_from>J&amp;D's</f_from>
+   </food>
+   <food id="15">
+      <f_name>Doritos Loco Taco</f_name>
+      <f_cost>2</f_cost>
+      <f_from>Taco Bell</f_from>
+   </food>
+   <food id="16">
+      <f_name>Lasagne Sandwhich</f_name>
+      <f_cost>4</f_cost>
+      <f_from>Tesco</f_from>
+   </food>
+   <food id="17">
+      <f_name>servings of Deep Fried Butter</f_name>
+      <f_cost>5</f_cost>
+      <f_from>Texas</f_from>
+   </food>
+   <food id="18">
+      <f_name>Model S 2015 Corvettes</f_name>
+      <f_cost>54000</f_cost>
+      <f_from>Chevrolet</f_from>
+   </food>
+   <food id="19">
+      <f_name>Corn Dog Pizzas</f_name>
+      <f_cost>5</f_cost>
+      <f_from>Minnesota</f_from>
+   </food>
+   <food id="20">
+      <f_name>6 Packs of PBR</f_name>
+      <f_cost>4</f_cost>
+      <f_from>Pabst Brewing</f_from>
+   </food>
+   <food id="21">
+      <f_name>Senators</f_name>
+      <f_cost>10500000</f_cost>
+      <f_from>the USA</f_from>
+   </food>
+   <food id="22">
+      <f_name>House Representatives</f_name>
+      <f_cost>1680000</f_cost>
+      <f_from>the USA</f_from>
+   </food>
+   <food id="23">
+      <f_name>Cats</f_name>
+      <f_cost>1000</f_cost>
+      <f_from>anywhere</f_from>
+   </food>
+   <food id="24">
+      <f_name>Average US Homes</f_name>
+      <f_cost>190000</f_cost>
+      <f_from>anywhere</f_from>
+   </food>
+   <food id="25">
+      <f_name>Loaves of Bread</f_name>
+      <f_cost>3</f_cost>
+      <f_from>anywhere</f_from>
+   </food>
+</document>

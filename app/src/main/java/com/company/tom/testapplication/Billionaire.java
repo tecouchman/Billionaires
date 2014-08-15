@@ -12,4 +12,10 @@ public class Billionaire {
     public String source;
     public String country;
     public String desc;
+
+    public String fname;
+    public String fcost;
+    public String fsour;
+    public static double currentbworth;
+
 }
