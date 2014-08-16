@@ -163,7 +163,7 @@ public class BillionaireComparison extends Activity  {
             while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
                 if (xpp.getEventType()==XmlPullParser.START_TAG) {
 
-                    Billionaire billionairedes = new Billionaire();
+                    //Billionaire billionairedes = new Billionaire();
 
                     String desc = xpp.getName();
 
@@ -171,6 +171,8 @@ public class BillionaireComparison extends Activity  {
                     if (desc.equals("person")) {
                         personID = xpp.getAttributeValue(0);
                     }
+
+
 
 
                     while (xpp.next() != XmlPullParser.END_TAG) {
@@ -201,9 +203,6 @@ public class BillionaireComparison extends Activity  {
             }
 
         }
-
-
-
         catch (Exception e) {
             // If an exception is thrown while the xml is being parsed then the billionaire data
             // can't be displayed so display an error message and return to previous screen.
@@ -347,7 +346,7 @@ public class BillionaireComparison extends Activity  {
 
         double howmany = Double.parseDouble(frandomFood.fcost);
 
-        double numberfood = Math.round(frandomFood.currentbworth / howmany);
+        long numberfood = Math.round(frandomFood.currentbworth / howmany);
 
         foodCostTextView.setText(numberfood + " " + frandomFood.fname) ;
 
