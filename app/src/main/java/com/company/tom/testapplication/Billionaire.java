@@ -12,6 +12,7 @@ public class Billionaire {
     public String source;
     public String country;
     public String desc;
+    public String link;
 
     public String fname;
     public String fcost;

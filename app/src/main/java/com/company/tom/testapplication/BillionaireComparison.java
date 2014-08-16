@@ -55,15 +55,15 @@ public class BillionaireComparison extends Activity  {
          billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
          billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
          billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
-         billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
-        bigmacImageView = (ImageView) findViewById(R.id.bigmac_imageview);
+        billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
+        foodImageView = (ImageView) findViewById(R.id.food_imageview);
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
 
-        foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
+       // foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
         foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
-        foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
+       // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
         showRandomFood();
 
     }
@@ -85,8 +85,6 @@ public class BillionaireComparison extends Activity  {
 
             XmlPullParser xpp=getResources().getXml(R.xml.billionairesfix);
 
-
-
             while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
                 if (xpp.getEventType()==XmlPullParser.START_TAG) {
 
@@ -99,10 +97,6 @@ public class BillionaireComparison extends Activity  {
                     if (name.equals("person")) {
                         personID = xpp.getAttributeValue(0);
                     }
-
-
-
-
 
 
 
@@ -127,8 +121,6 @@ public class BillionaireComparison extends Activity  {
                             billionaire.source = readText(xpp);
                         } else if (name.equals("b_country")) {
                             billionaire.country = readText(xpp);
-                        }else if (name.equals("desc")) {
-                            billionaire.desc = readText(xpp);
                         }
                     }
 
@@ -136,11 +128,82 @@ public class BillionaireComparison extends Activity  {
 
                 }
 
+                //Why is this here?
+                xpp.next();
+
+            }
+
+
+
+
+
+
+        }
+        catch (Exception e) {
+            // If an exception is thrown while the xml is being parsed then the billionaire data
+            // can't be displayed so display an error message and return to previous screen.
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please try again.")
+                    .setTitle("Something went wrong")
+                    .setPositiveButton("OK", null)
+                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            finish();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+
+        try {
+
+            XmlPullParser xpp=getResources().getXml(R.xml.desandlink);
+
+            while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
+                if (xpp.getEventType()==XmlPullParser.START_TAG) {
+
+                    Billionaire billionairedes = new Billionaire();
+
+                    String desc = xpp.getName();
+
+                    String personID = "";
+                    if (desc.equals("person")) {
+                        personID = xpp.getAttributeValue(0);
+                    }
+
+
+                    while (xpp.next() != XmlPullParser.END_TAG) {
+                        if (xpp.getEventType() != XmlPullParser.START_TAG) {
+
+                            continue;
+                        }
+                        billionairedes.ID = personID;
+
+                        desc = xpp.getName();
+
+                        if (desc.equals("b_desc")) {
+                            billionairedes.desc = readText(xpp);
+                        } else if (desc.equals("b_link")) {
+                            billionairedes.link = readText(xpp);
+                        }
+                    }
+
+
+                    //Does this add billionairedes to items? or the other way? I want to add des to the full array
+                    items.add(billionairedes);
+
+                }
+
+                //Why is this here?
                 xpp.next();
 
             }
 
         }
+
+
+
         catch (Exception e) {
             // If an exception is thrown while the xml is being parsed then the billionaire data
             // can't be displayed so display an error message and return to previous screen.
@@ -174,8 +237,7 @@ public class BillionaireComparison extends Activity  {
         int id = context.getResources().getIdentifier("pic" + randomBillionaire.ID, "drawable", context.getPackageName());
         billionaireImageView.setImageResource(id);
 
-        //bigmacs
-        bigmacImageView.setImageResource(R.drawable.bigmac);
+
 
         // Retrieve the salary from th previous activity
         double userSalary = getIntent().getExtras().getDouble("salary");
@@ -194,11 +256,11 @@ public class BillionaireComparison extends Activity  {
              currentWorth = userSalary + currentWorth + interest;
         }
         // Return years
-        userSalaryTextView.setText("With your current salary, with 100% savings and 10% interest it would take you " + year + " years to eat this many Big Macs.");
+        userSalaryTextView.setText("With your current salary, with 100% savings and 10% interest it would take you " + year + " to save this much $$$.");
 
     }
-
-    public static int getResId(String variableName, Class<?> c) {
+//WHAT IS THIS BELOW?
+/*    public static int getResId(String variableName, Class<?> c) {
 
         try {
             Field idField = c.getDeclaredField(variableName);
@@ -207,7 +269,7 @@ public class BillionaireComparison extends Activity  {
             e.printStackTrace();
             return -1;
         }
-    }
+    }*/
 
 
     private void showRandomFood() {
@@ -278,28 +340,29 @@ public class BillionaireComparison extends Activity  {
         }
 
 
-        Random rand = new Random();
-        int randomNum = rand.nextInt(fooditems.size());
-        Billionaire randomFood = fooditems.get(randomNum);
+        Random frand = new Random();
+        int frandomNum = frand.nextInt(fooditems.size());
+        Billionaire frandomFood = fooditems.get(frandomNum);
 
 
-        double howmany = double.parseDouble(randomFood.fcost);
+        double howmany = Double.parseDouble(frandomFood.fcost);
 
+        double numberfood = Math.round(frandomFood.currentbworth / howmany);
 
-        foodCostTextView.setText((randomFood.currentbworth / howmany) + randomFood.fname) ;
+        foodCostTextView.setText(numberfood + " " + frandomFood.fname) ;
 
 
         // Determine the resource name of the relevant image and get the resource ID, then set the
         // the image to the image view using the resource ID.
         Context context = foodImageView.getContext();
-        int id = context.getResources().getIdentifier("stf" + randomFood.ID, "drawable", context.getPackageName());
+        int id = context.getResources().getIdentifier("stf" + frandomFood.ID, "drawable", context.getPackageName());
         foodImageView.setImageResource(id);
 
 
 
         }
 
-    }
+
 
     public static int getResId(String variableName, Class<?> c) {
 
