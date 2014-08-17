@@ -17,7 +17,6 @@
          android:layout_width="198dp"
          android:layout_height="300dp"
          android:layout_marginRight="3dp"
-         android:layout_marginBottom="3dp"
          android:background="#ffffd000"
          android:layout_alignParentTop="true"
          android:layout_alignParentLeft="true"
@@ -28,16 +27,13 @@
         android:id="@+id/food_imageview"
         android:layout_width="200dp"
         android:layout_height="304dp"
-android:layout_marginTop="3dp"
         android:background="#ff6400ff"
-
+        android:layout_marginBottom="53dp"
         android:layout_toEndOf="@+id/billionaire_imageview"
-        android:layout_alignBottom="@+id/b_desc"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/food_cost_textview"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/food_cost_textview" />
 
 
     <TextView
@@ -104,6 +100,8 @@ android:paddingTop="10dp"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:padding="5dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
         android:background="#ff6400ff"
         android:textColor="#ffffff"
         android:layout_toEndOf="@+id/billionaire_imageview"
@@ -112,13 +110,14 @@ android:paddingTop="10dp"
         android:layout_below="@+id/billionaire_imageview"
         android:layout_toRightOf="@+id/billionaire_imageview" />
     />
-    TextView
+
+    <TextView
     android:id="@+id/b_desc"
         android:text="It would takelsdkajfsd lksdjfa;lsdjfasdlkfsdl kjd;fajsd ;lkdsjfalsdkdlddf alkdslkjfd lkj djkld fdk ljd klj dlk dlkd lk dlk ljk lkjdlk flk flk l kj lk lkj lk jlk lkj lk "
         android:padding="5dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="53dp"
     android:textSize="16sp"
     android:background="#ff6400ff"
         android:textColor="#ffffff"
@@ -127,9 +126,9 @@ android:paddingTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/user_salary_textview"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/billionaire_imageview"
         android:layout_alignRight="@+id/billionaire_imageview"
-        android:layout_alignEnd="@+id/billionaire_imageview" />
+        android:layout_alignEnd="@+id/billionaire_imageview"
+        android:layout_alignTop="@+id/food_cost_textview" />
 
     <TextView
         android:id="@+id/user_salary_textview"

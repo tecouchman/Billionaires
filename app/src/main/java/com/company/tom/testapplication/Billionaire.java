@@ -7,11 +7,13 @@ package com.company.tom.testapplication;
     public class Billionaire {
         public String ID;
         public String name;
-        public Double worth;
-        public int age;
+        public String worth;
+        public static double shareworth;
+        public String age;
         public String rank;
         public String source;
         public String country;
         public String desc;
         public String link;
+
 }

@@ -45,6 +45,9 @@ public class BillionaireComparison extends Activity  {
     TextView foodSourceTextView;
     TextView foodCostTextView;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,19 +55,21 @@ public class BillionaireComparison extends Activity  {
 
 
 
-         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
-         billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
-         billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
+        billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
+        billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
+        billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
         billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
         foodImageView = (ImageView) findViewById(R.id.food_imageview);
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
 
-       // foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
+      //  foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
         foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
-       // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
-        //showRandomFood();
+        // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
+        showRandomFood();
+
+
 
     }
 
@@ -77,13 +82,14 @@ public class BillionaireComparison extends Activity  {
         return result;
     }
 
+
     private void showRandomBillionaire() {
 
         ArrayList<Billionaire> items = new ArrayList<Billionaire>();
 
         try {
 
-            XmlPullParser xpp=getResources().getXml(R.xml.bwithdesc);
+            XmlPullParser xpp=getResources().getXml(R.xml.bnolink);
 
             while (xpp.getEventType()!=XmlPullParser.END_DOCUMENT) {
                 if (xpp.getEventType()==XmlPullParser.START_TAG) {
@@ -112,18 +118,22 @@ public class BillionaireComparison extends Activity  {
                         if (name.equals("b_name")) {
                             billionaire.name = readText(xpp);
                         } else if (name.equals("b_wealth")) {
-                            billionaire.worth = 1.0;//readText(xpp).isEmpty()? 0 :Double.parseDouble(readText(xpp));
+                            billionaire.worth = readText(xpp);
                         } else if (name.equals("b_age")) {
-                            billionaire.age = 1;//readText(xpp).isEmpty()? 0 : Integer.parseInt(readText(xpp));
+                            billionaire.age = readText(xpp);
                         } else if (name.equals("b_rank")) {
                             billionaire.rank = readText(xpp);
                         } else if (name.equals("b_source")) {
                             billionaire.source = readText(xpp);
                         } else if (name.equals("b_country")) {
                             billionaire.country = readText(xpp);
-                        } else if (name.equals("b_link")) {
+                        }
+
+                   /*     else if (name.equals("b_link")) {
                             billionaire.link = readText(xpp);
-                        } else if (name.equals("b_desc")) {
+                        }*/
+
+                        else if (name.equals("b_desc")) {
                             billionaire.desc = readText(xpp);
                         }
                     }
@@ -132,7 +142,7 @@ public class BillionaireComparison extends Activity  {
 
                 }
 
-                //Why is this here?
+
                 xpp.next();
 
             }
@@ -167,13 +177,10 @@ public class BillionaireComparison extends Activity  {
         int randomNum = rand.nextInt(items.size());
         Billionaire randomBillionaire = items.get(randomNum);
 
-
-       // billionaireAgeTextView.setText("Age " + Integer.toString(randomBillionaire.age));
-
-
-        //billionaireWorthTextView.setText("$" + Double.toString(randomBillionaire.worth) + " Billion");
-        //billionaireNameTextView.setText(randomBillionaire.name);
-        //billionaireDescTextView.setText(randomBillionaire.desc);
+        billionaireAgeTextView.setText("Age " + randomBillionaire.age);
+       billionaireWorthTextView.setText("$" + randomBillionaire.worth + " Billion");
+        billionaireNameTextView.setText(randomBillionaire.name);
+       billionaireDescTextView.setText(randomBillionaire.desc);
 
 
 
@@ -188,8 +195,9 @@ public class BillionaireComparison extends Activity  {
         // Retrieve the salary from th previous activity
         double userSalary = getIntent().getExtras().getDouble("salary");
         // Calculate the billionaire's worth as an actual number, not just number of billions.
-        double networth = randomBillionaire.worth * 1000000000;
+        double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
 
+        Billionaire.shareworth = networth;
         //randomBillionaire.currentbworth = networth;
 
 
@@ -208,7 +216,8 @@ public class BillionaireComparison extends Activity  {
 
 
 
-/*
+
+
     private void showRandomFood() {
 
         ArrayList<Food> foodItems = new ArrayList<Food>();
@@ -226,7 +235,7 @@ public class BillionaireComparison extends Activity  {
                     String fname = xpp.getName();
 
                     String foodID = "";
-                    if (fname.equals("person")) {
+                    if (fname.equals("food")) {
                         foodID = xpp.getAttributeValue(0);
                     }
 
@@ -283,8 +292,9 @@ public class BillionaireComparison extends Activity  {
 
         // Figuring out how many of a food the billionaire could buy.
         double howmany = frandomFood.cost;
+       // double worthbills = Double.parseDouble(Billionaire.shareworth) * 1000000000;
 
-        long numberfood = 5;//Math.round(frandomFood.currentbworth / howmany);
+        long numberfood = Math.round( Billionaire.shareworth / howmany);
 
         foodCostTextView.setText(numberfood + " " + frandomFood.name) ;
 
@@ -299,13 +309,13 @@ public class BillionaireComparison extends Activity  {
 
         }
 
-*/
 
 
 
 
-//WHAT IS THIS BELOW?
-/*    public static int getResId(String variableName, Class<?> c) {
+
+//WHAT IS THIS BELOW? Adding and removing it seems to have no effect?
+ /*  public static int getResId(String variableName, Class<?> c) {
 
         try {
             Field idField = c.getDeclaredField(variableName);

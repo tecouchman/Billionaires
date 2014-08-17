@@ -71,12 +71,12 @@
       <f_from>J&amp;D's</f_from>
    </food>
    <food id="15">
-      <f_name>Doritos Loco Taco</f_name>
+      <f_name>Doritos Loco Tacos</f_name>
       <f_cost>2</f_cost>
       <f_from>Taco Bell</f_from>
    </food>
    <food id="16">
-      <f_name>Lasagne Sandwhich</f_name>
+      <f_name>Lasagne Sandwhiches</f_name>
       <f_cost>4</f_cost>
       <f_from>Tesco</f_from>
    </food>
@@ -86,7 +86,7 @@
       <f_from>Texas</f_from>
    </food>
    <food id="18">
-      <f_name>Model S 2015 Corvettes</f_name>
+      <f_name>Corvette Z06s</f_name>
       <f_cost>54000</f_cost>
       <f_from>Chevrolet</f_from>
    </food>
