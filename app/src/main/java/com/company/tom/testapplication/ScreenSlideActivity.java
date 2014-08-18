@@ -43,7 +43,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 1;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -59,7 +59,7 @@ public class ScreenSlideActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_slide);
+               setContentView(R.layout.activity_screen_slide);
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -76,12 +76,16 @@ public class ScreenSlideActivity extends FragmentActivity {
             }
         });
     }
-
-    @Override
+//COMMENTED OUT AS LOTS OF ERRORS< NOT IN DOCUMENTATION
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
+        //changed from activity_screen_slider to billionaire_comparion
+        getMenuInflater().inflate(R.menu.billionaire_comparison, menu);
+
+
+        //what is action previous?
         menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
 
         // Add either a "next" or "finish" button to the action bar, depending on which page
@@ -93,8 +97,9 @@ public class ScreenSlideActivity extends FragmentActivity {
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
-
-    @Override
+*/
+    //COMMENTED OUT, LOTS OF ERRORS, not in documentation?
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -118,7 +123,7 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     /**
      * A simple pager adapter that represents 5 {@link ScreenSlidePageFragment} objects, in
      * sequence.

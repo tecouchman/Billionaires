@@ -9,8 +9,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -327,6 +330,22 @@ public class BillionaireComparison extends Activity  {
     }*/
 
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout containing a title and body text.
+        ViewGroup rootView = (ViewGroup) inflater
+
+                //ORIGINAL   .inflate(R.layout.fragment_screen_slide_page, container, false);
+                .inflate(R.layout.activity_billionaire_comparison, container, false);
+        // Set the title view to show the page number.
+        //((TextView) rootView.findViewById(android.R.id.text1)).setText(
+        //  getString(R.string.title_template_step, mPageNumber + 1));
+
+        return rootView;
+
+    }
 
 
 
