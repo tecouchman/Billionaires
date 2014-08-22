@@ -20,6 +20,7 @@
             android:name=".BillionaireComparison"
             android:label="@string/title_activity_billionaire_comparison" >
         </activity>
+
     </application>
 
 </manifest>
