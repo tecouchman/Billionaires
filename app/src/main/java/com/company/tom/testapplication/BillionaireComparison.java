@@ -56,7 +56,8 @@ public class BillionaireComparison extends Activity {
     TextView foodSourceTextView;
     TextView foodCostTextView;
 
-private PagerAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,53 +65,27 @@ private PagerAdapter adapter;
 
 
         setContentView(R.layout.activity_billionaire_comparison);
-        //PageAdapter adapter = new PageAdapter (this, imageArra);
+        PageAdapter adapter = new PageAdapter ();
 
         ViewPager myPager = (ViewPager) findViewById(R.id.myfivepanelpager);
-       myPager.setAdapter(adapter);
-        myPager.setCurrentItem(0);
-
-
-        //Added to fix nullpointerexception, does not update anything
-       // LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //View v = inflater.inflate(R.layout.activity_billionaire_comparison, null);
-/*
-
-
-        billionaireAgeTextView = (TextView) v.findViewById(R.id.billionaire_age_textview);
-        billionaireWorthTextView = (TextView)v.findViewById(R.id.billionaire_worth_textview);
-        billionaireNameTextView = (TextView) v.findViewById(R.id.billionaire_name_textview);
-        billionaireImageView = (ImageView)v.findViewById(R.id.billionaire_imageview);
-        foodImageView = (ImageView) v.findViewById(R.id.food_imageview);
-        userSalaryTextView = (TextView) v.findViewById(R.id.user_salary_textview);
-        billionaireDescTextView = (TextView) v.findViewById(R.id.b_desc);
-        showRandomBillionaire();
-*/
+        myPager.setAdapter(adapter);
 
 
 
-
-
+        //Text & Image Views to be filled by showRandomBillionaire
         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
         billionaireWorthTextView = (TextView)findViewById(R.id.billionaire_worth_textview);
         billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
         billionaireImageView = (ImageView)findViewById(R.id.billionaire_imageview);
-        foodImageView = (ImageView) findViewById(R.id.food_imageview);
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
 
 
-
-      //  foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
+        // Text & Image Views to be filled by showRandomFood
+        foodImageView = (ImageView) findViewById(R.id.food_imageview);
         foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
-        // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
         showRandomFood();
-
-        //viewpager layout
-        //setContentView(R.layout.viewpager_layout);
-       // initialisePaging();
-
     }
 
     private int imageArra[] ={ R.drawable.stf1, R.drawable.stf12, R.drawable.stf13, R.drawable.stf14, R.drawable.stf15};
