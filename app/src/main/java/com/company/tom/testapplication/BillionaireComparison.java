@@ -1,5 +1,6 @@
 package com.company.tom.testapplication;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,7 +39,7 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 
-public class BillionaireComparison extends FragmentActivity {
+public class BillionaireComparison extends Activity {
 
 
 
