@@ -89,11 +89,16 @@ public class MyActivity extends FragmentActivity implements View.OnClickListener
             dialog.show();
 
         }
-        else {
-            Intent billionaireComparison = new Intent(this, BillionaireComparison.class);
+       else {
+           Intent billionaireComparison = new Intent(this, BillionaireComparison.class);
             Double salary = Double.parseDouble(salaryEditText.getText().toString());
             billionaireComparison.putExtra("salary", salary);
             startActivity(billionaireComparison);
+
+            Intent billionPage = new Intent(this, BillionPage.class);
+            //Double salary = Double.parseDouble(salaryEditText.getText().toString());
+            //billionPage.putExtra("salary", salary);
+            startActivity(billionPage);
         }
     }
 

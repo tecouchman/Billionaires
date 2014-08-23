@@ -9,5 +9,6 @@
     <string name="title_activity_billionaire_comparison">Billionaires</string>
     <string name="welcomequote" >The top 85 richest individuals have the combined wealth of the World\'s 3.5 billion poorest.</string>
     <string name="lorem_ipsum">lorem ipsum</string>
+    <string name="title_activity_billion_page">Billion Page Label string</string>
 
 </resources>

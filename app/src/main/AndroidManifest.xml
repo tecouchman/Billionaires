@@ -20,6 +20,11 @@
             android:name=".BillionaireComparison"
             android:label="@string/title_activity_billionaire_comparison" >
         </activity>
+        <activity
+            android:name=".BillionPage"
+            android:label="@string/title_activity_billion_page" >
+        </activity>
+
 
     </application>
 

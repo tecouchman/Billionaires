@@ -56,19 +56,17 @@ public class BillionaireComparison extends FragmentActivity {
     TextView foodSourceTextView;
     TextView foodCostTextView;
 
-    private PagerAdapter mPagerAdapter;
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //Added to fix nullpointerexception, does not update anything
         LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.activity_billionaire_comparison, null);
-        //test = (TextView)v.findViewById(R.id.txtPagerDate);
+
 
         billionaireAgeTextView = (TextView) v.findViewById(R.id.billionaire_age_textview);
         billionaireWorthTextView = (TextView)v.findViewById(R.id.billionaire_worth_textview);
@@ -79,14 +77,29 @@ public class BillionaireComparison extends FragmentActivity {
         billionaireDescTextView = (TextView) v.findViewById(R.id.b_desc);
         showRandomBillionaire();
 
+
+/*
+
+
+        billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
+        billionaireWorthTextView = (TextView)findViewById(R.id.billionaire_worth_textview);
+        billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
+        billionaireImageView = (ImageView)findViewById(R.id.billionaire_imageview);
+        foodImageView = (ImageView) findViewById(R.id.food_imageview);
+        userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
+        billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
+        showRandomBillionaire();
+*/
+
+
       //  foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
         foodCostTextView = (TextView) v.findViewById(R.id.food_cost_textview);
         // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
         showRandomFood();
 
         //viewpager layout
-        setContentView(R.layout.viewpager_layout);
-        initialisePaging();
+        //setContentView(R.layout.viewpager_layout);
+       // initialisePaging();
 
     }
 
@@ -210,7 +223,13 @@ public class BillionaireComparison extends FragmentActivity {
 
 
         // Retrieve the salary from th previous activity
-        double userSalary = getIntent().getExtras().getDouble("salary");
+        //commenting out as it is having trouble nullpointer exception
+        //        double userSalary = getIntent().getExtras().getDouble("salary");
+
+
+        double userSalary = 1000;
+
+
         // Calculate the billionaire's worth as an actual number, not just number of billions.
         double networth = Double.parseDouble(randomBillionaire.worth) * 1000000000;
 
@@ -327,22 +346,6 @@ public class BillionaireComparison extends FragmentActivity {
         }
 
 
-
-
-
-
-
-    private void initialisePaging() {
-        // TODO Auto-generated method stub
-        List<android.support.v4.app.Fragment> fragments = new Vector<android.support.v4.app.Fragment>();
-        fragments.add(android.support.v4.app.Fragment.instantiate(this, Fragment1.class.getName()));
-        fragments.add(android.support.v4.app.Fragment.instantiate(this, Fragment2.class.getName()));
-        mPagerAdapter =new PageAdapter(this.getSupportFragmentManager(), fragments);
-
-        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
-        pager.setAdapter(mPagerAdapter);
-
-    }
 
 
 
