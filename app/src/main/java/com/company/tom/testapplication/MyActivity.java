@@ -5,6 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +24,11 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 
-public class MyActivity extends Activity implements View.OnClickListener {
+public class MyActivity extends FragmentActivity implements View.OnClickListener {
 
 
     //TextView welcomeTextView;
@@ -44,6 +50,11 @@ public class MyActivity extends Activity implements View.OnClickListener {
         mainButton = (Button) findViewById(R.id.main_button);
         mainButton.setOnClickListener(this);
     }
+
+
+
+
+
 
 
     @Override

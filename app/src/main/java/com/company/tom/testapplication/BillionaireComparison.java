@@ -2,12 +2,17 @@ package com.company.tom.testapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,12 +33,15 @@ import java.io.Console;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 
+public class BillionaireComparison extends FragmentActivity {
 
-public class BillionaireComparison extends Activity  {
+
 
 
     TextView billionaireNameTextView;
@@ -48,15 +56,18 @@ public class BillionaireComparison extends Activity  {
     TextView foodSourceTextView;
     TextView foodCostTextView;
 
+    private PagerAdapter mPagerAdapter;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_billionaire_comparison);
 
-
+        //viewpager layout
+        setContentView(R.layout.viewpager_layout);
+        initialisePaging();
 
         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
         billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
@@ -180,9 +191,9 @@ public class BillionaireComparison extends Activity  {
         int randomNum = rand.nextInt(items.size());
         Billionaire randomBillionaire = items.get(randomNum);
 
-        billionaireAgeTextView.setText("Age " + randomBillionaire.age);
+       billionaireAgeTextView.setText("Age " + randomBillionaire.age);
        billionaireWorthTextView.setText("$" + randomBillionaire.worth + " Billion");
-        billionaireNameTextView.setText(randomBillionaire.name);
+       billionaireNameTextView.setText(randomBillionaire.name);
        billionaireDescTextView.setText(randomBillionaire.desc);
 
 
@@ -317,6 +328,24 @@ public class BillionaireComparison extends Activity  {
 
 
 
+
+    private void initialisePaging() {
+        // TODO Auto-generated method stub
+        List<android.support.v4.app.Fragment> fragments = new Vector<android.support.v4.app.Fragment>();
+        fragments.add(android.support.v4.app.Fragment.instantiate(this, Fragment1.class.getName()));
+        fragments.add(android.support.v4.app.Fragment.instantiate(this, Fragment2.class.getName()));
+        mPagerAdapter =new PageAdapter(this.getSupportFragmentManager(), fragments);
+
+        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        pager.setAdapter(mPagerAdapter);
+
+    }
+
+
+
+
+
+
 //WHAT IS THIS BELOW? Adding and removing it seems to have no effect?
  /*  public static int getResId(String variableName, Class<?> c) {
 
@@ -330,22 +359,6 @@ public class BillionaireComparison extends Activity  {
     }*/
 
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout containing a title and body text.
-        ViewGroup rootView = (ViewGroup) inflater
-
-                //ORIGINAL   .inflate(R.layout.fragment_screen_slide_page, container, false);
-                .inflate(R.layout.activity_billionaire_comparison, container, false);
-        // Set the title view to show the page number.
-        //((TextView) rootView.findViewById(android.R.id.text1)).setText(
-        //  getString(R.string.title_template_step, mPageNumber + 1));
-
-        return rootView;
-
-    }
 
 
 
@@ -367,4 +380,9 @@ public class BillionaireComparison extends Activity  {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
 }
