@@ -65,25 +65,28 @@ public class BillionaireComparison extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //viewpager layout
-        setContentView(R.layout.viewpager_layout);
-        initialisePaging();
+        //Added to fix nullpointerexception, does not update anything
+        LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.activity_billionaire_comparison, null);
+        //test = (TextView)v.findViewById(R.id.txtPagerDate);
 
-        billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
-        billionaireWorthTextView = (TextView) findViewById(R.id.billionaire_worth_textview);
-        billionaireNameTextView = (TextView) findViewById(R.id.billionaire_name_textview);
-        billionaireImageView = (ImageView) findViewById(R.id.billionaire_imageview);
-        foodImageView = (ImageView) findViewById(R.id.food_imageview);
-        userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
-        billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
+        billionaireAgeTextView = (TextView) v.findViewById(R.id.billionaire_age_textview);
+        billionaireWorthTextView = (TextView)v.findViewById(R.id.billionaire_worth_textview);
+        billionaireNameTextView = (TextView) v.findViewById(R.id.billionaire_name_textview);
+        billionaireImageView = (ImageView)v.findViewById(R.id.billionaire_imageview);
+        foodImageView = (ImageView) v.findViewById(R.id.food_imageview);
+        userSalaryTextView = (TextView) v.findViewById(R.id.user_salary_textview);
+        billionaireDescTextView = (TextView) v.findViewById(R.id.b_desc);
         showRandomBillionaire();
 
       //  foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
-        foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
+        foodCostTextView = (TextView) v.findViewById(R.id.food_cost_textview);
         // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
         showRandomFood();
 
-
+        //viewpager layout
+        setContentView(R.layout.viewpager_layout);
+        initialisePaging();
 
     }
 
