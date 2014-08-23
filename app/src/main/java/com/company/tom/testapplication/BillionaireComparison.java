@@ -56,16 +56,25 @@ public class BillionaireComparison extends Activity {
     TextView foodSourceTextView;
     TextView foodCostTextView;
 
-
+private PagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
+        setContentView(R.layout.activity_billionaire_comparison);
+        //PageAdapter adapter = new PageAdapter (this, imageArra);
+
+        ViewPager myPager = (ViewPager) findViewById(R.id.myfivepanelpager);
+       myPager.setAdapter(adapter);
+        myPager.setCurrentItem(0);
+
+
         //Added to fix nullpointerexception, does not update anything
-        LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_billionaire_comparison, null);
+       // LayoutInflater inflater =(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View v = inflater.inflate(R.layout.activity_billionaire_comparison, null);
+/*
 
 
         billionaireAgeTextView = (TextView) v.findViewById(R.id.billionaire_age_textview);
@@ -76,9 +85,10 @@ public class BillionaireComparison extends Activity {
         userSalaryTextView = (TextView) v.findViewById(R.id.user_salary_textview);
         billionaireDescTextView = (TextView) v.findViewById(R.id.b_desc);
         showRandomBillionaire();
+*/
 
 
-/*
+
 
 
         billionaireAgeTextView = (TextView) findViewById(R.id.billionaire_age_textview);
@@ -89,11 +99,11 @@ public class BillionaireComparison extends Activity {
         userSalaryTextView = (TextView) findViewById(R.id.user_salary_textview);
         billionaireDescTextView = (TextView) findViewById(R.id.b_desc);
         showRandomBillionaire();
-*/
+
 
 
       //  foodNameTextView = (TextView) findViewById(R.id.food_name_textview);
-        foodCostTextView = (TextView) v.findViewById(R.id.food_cost_textview);
+        foodCostTextView = (TextView) findViewById(R.id.food_cost_textview);
         // foodSourceTextView = (TextView) findViewById(R.id.food_source_textview);
         showRandomFood();
 
@@ -102,6 +112,10 @@ public class BillionaireComparison extends Activity {
        // initialisePaging();
 
     }
+
+    private int imageArra[] ={ R.drawable.stf1, R.drawable.stf12, R.drawable.stf13, R.drawable.stf14, R.drawable.stf15};
+
+
 
     private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
         String result = "";

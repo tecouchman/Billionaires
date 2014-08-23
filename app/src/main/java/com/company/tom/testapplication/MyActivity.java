@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Vector;
 
 
-public class MyActivity extends FragmentActivity implements View.OnClickListener {
+public class MyActivity extends Activity implements View.OnClickListener {
 
 
     //TextView welcomeTextView;
@@ -95,10 +95,6 @@ public class MyActivity extends FragmentActivity implements View.OnClickListener
             billionaireComparison.putExtra("salary", salary);
             startActivity(billionaireComparison);
 
-            Intent billionPage = new Intent(this, BillionPage.class);
-            //Double salary = Double.parseDouble(salaryEditText.getText().toString());
-            //billionPage.putExtra("salary", salary);
-            startActivity(billionPage);
         }
     }
 

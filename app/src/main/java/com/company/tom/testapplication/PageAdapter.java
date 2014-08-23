@@ -6,32 +6,58 @@ package com.company.tom.testapplication;
 
 
 import java.util.List;
+import android.app.Activity;
+import android.os.Parcelable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
-public class PageAdapter extends FragmentPagerAdapter {
+public class PageAdapter extends PagerAdapter {
 
 
-    private List<Fragment> fragments;
 
-    public PageAdapter(FragmentManager fm, List<Fragment> fragments) {
-        super(fm);
-        // TODO Auto-generated constructor stub
-        this.fragments = fragments;
+        Activity activity;
+        int imageArray[];
+
+        public PageAdapter (Activity act, int[] imgArra) {
+            imageArray = imgArra;
+            activity = act;
+        }
+
+        public int getCount() {
+            return imageArray.length;
+        }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
-    @Override
-    public Fragment getItem(int arg0) {
-        // TODO Auto-generated method stub
-        return this.fragments.get(arg0);
-    }
+        public Object instantiateItem(View collection, int position) {
+            ImageView view = new ImageView(activity);
+            view.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+                    LayoutParams.FILL_PARENT));
+            view.setScaleType(ScaleType.FIT_XY);
+            view.setBackgroundResource(imageArray[position]);
+            ((ViewPager) collection).addView(view, 0);
+            return view;
+        }
 
-    @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return this.fragments.size();
-    }
+        @Override
+        public void destroyItem(View arg0, int arg1, Object arg2) {
+            ((ViewPager) arg0).removeView((View) arg2);
+        }
 
-}
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == ((View) arg1);
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+    }
